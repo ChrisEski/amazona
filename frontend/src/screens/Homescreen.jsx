@@ -4,6 +4,7 @@
 import axios from "axios";
 import { useEffect, useReducer } from "react";
 import { Row, Col } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 
 // Components
 import Product from "../components/Product";
@@ -44,6 +45,9 @@ function HomeScreen() {
 
   return (
     <div>
+      <Helmet>
+        <title>Amazona</title>
+      </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
