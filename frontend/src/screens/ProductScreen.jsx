@@ -4,13 +4,13 @@ import React, { useContext, useEffect, useReducer } from "react";
 import { Badge, Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { getError } from "../utils";
+import { Store } from "../Store";
 
 // Components
 import Rating from "../components/Rating";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { getError } from "../utils";
-import { Store } from "../Store";
 
 const reducer = (state, action) => {
   switch (action.type) {
