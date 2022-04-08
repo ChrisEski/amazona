@@ -2,7 +2,7 @@
 
 #### YouTube
 
-https://www.youtube.com/watch?v=CDtPMR5y0QU&t=8832s
+https://www.youtube.com/watch?v=CDtPMR5y0QU&t=0s
 
 #### Github
 
