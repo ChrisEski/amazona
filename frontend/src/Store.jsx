@@ -24,6 +24,7 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    // ***** CART ACTIONS ******
     case "CART_ADD_ITEM":
       const newItem = action.payload;
       const existItem = state.cart.cartItems.find(
@@ -46,6 +47,10 @@ function reducer(state, action) {
       return { ...state, cart: { ...state.cart, cartItems } };
     }
 
+    case "CART_CLEAR":
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
+
+    // ***** USER ACTIONS *****
     case "USER_SIGNIN":
       return { ...state, userInfo: action.payload };
 
