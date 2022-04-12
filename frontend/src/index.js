@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import reportWebVitals from "./reportWebVitals";
 import { StoreProvider } from "./Store";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 // Styles
 import "./index.css";
@@ -12,7 +13,9 @@ import App from "./App";
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
-      <App />
+      <PayPalScriptProvider deferLoading={true}>
+        <App />
+      </PayPalScriptProvider>
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById("root")
