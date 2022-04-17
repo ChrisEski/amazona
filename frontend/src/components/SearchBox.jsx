@@ -23,7 +23,11 @@ export default function SearchBox() {
           placeholder="Search Products..."
           aria-label="Search Product"
           aria-describedby="button-search"></FormControl>
-        <Button variant="outline-primary" type="submit" id="button-search">
+        <Button
+          onClick={submitHandler}
+          variant="outline-primary"
+          type="submit"
+          id="button-search">
           <i className="fas fa-search"></i>
         </Button>
       </InputGroup>

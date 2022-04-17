@@ -20,7 +20,7 @@ import axios from "axios";
 import HomeScreen from "./screens/Homescreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
-import SignInScreen from "./screens/SignInScreen";
+import SigninScreen from "./screens/SigninScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
@@ -28,6 +28,7 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import SearchScreen from "./screens/SearchScreen";
 
 // Components
 import SearchBox from "./components/SearchBox";
@@ -43,7 +44,6 @@ function App() {
     localStorage.removeItem("paymentMethod");
     window.location.href = "/signin";
   };
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -58,7 +58,6 @@ function App() {
     };
     fetchCategories();
   }, []);
-
   return (
     <BrowserRouter>
       <div
@@ -76,13 +75,14 @@ function App() {
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}>
                 <i className="fas fa-bars"></i>
               </Button>
+
               <LinkContainer to="/">
                 <Navbar.Brand>amazona</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBox />
-                <Nav className="me-auto w-100 justify-content-end">
+                <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && (
@@ -108,7 +108,7 @@ function App() {
                       </Link>
                     </NavDropdown>
                   ) : (
-                    <Link to="/signin" className="nav-link">
+                    <Link className="nav-link" to="/signin">
                       Sign In
                     </Link>
                   )}
@@ -126,18 +126,16 @@ function App() {
           <Nav className="flex-column text-white w-100 p-2">
             <Nav.Item>
               <strong>Categories</strong>
-              <Nav.Item>
-                {categories.map(category => (
-                  <Nav.Item key={category}>
-                    <LinkContainer
-                      to={`/search?category=${category}`}
-                      onClick={() => setSidebarIsOpen(false)}>
-                      <Nav.Link>{category}</Nav.Link>
-                    </LinkContainer>
-                  </Nav.Item>
-                ))}
-              </Nav.Item>
             </Nav.Item>
+            {categories.map(category => (
+              <Nav.Item key={category}>
+                <LinkContainer
+                  to={`/search?category=${category}`}
+                  onClick={() => setSidebarIsOpen(false)}>
+                  <Nav.Link>{category}</Nav.Link>
+                </LinkContainer>
+              </Nav.Item>
+            ))}
           </Nav>
         </div>
         <main>
@@ -145,7 +143,8 @@ function App() {
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
-              <Route path="/signin" element={<SignInScreen />} />
+              <Route path="/search" element={<SearchScreen />} />
+              <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
@@ -153,8 +152,10 @@ function App() {
               <Route
                 path="/orderhistory"
                 element={<OrderHistoryScreen />}></Route>
-              <Route path="/shipping" element={<ShippingAddressScreen />} />
-              <Route path="/payment" element={<PaymentMethodScreen />} />
+              <Route
+                path="/shipping"
+                element={<ShippingAddressScreen />}></Route>
+              <Route path="/payment" element={<PaymentMethodScreen />}></Route>
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
